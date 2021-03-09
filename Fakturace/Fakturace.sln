@@ -1,0 +1,25 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.29411.108
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Fakturace", "Fakturace\Fakturace.csproj", "{D649A5FF-A28F-4327-B8B3-384928EA7E3D}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{D649A5FF-A28F-4327-B8B3-384928EA7E3D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{D649A5FF-A28F-4327-B8B3-384928EA7E3D}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{D649A5FF-A28F-4327-B8B3-384928EA7E3D}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{D649A5FF-A28F-4327-B8B3-384928EA7E3D}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {C68EC0F3-5A61-4456-93EF-6E28491B2F33}
+	EndGlobalSection
+EndGlobal
