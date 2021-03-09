@@ -18,7 +18,7 @@ namespace Fakturace
         public FrmZakaznik()
         {
             InitializeComponent();
-            sqlRepository = new SqlRepository("Data Source=(localdb)\\MSSQLLocalDB;Initial Catalog=Etzler-Fakturace;Integrated Security=True;Connect Timeout=30;Encrypt=False;TrustServerCertificate=False;ApplicationIntent=ReadWrite;MultiSubnetFailover=False");
+            sqlRepository = new SqlRepository(@"Data Source=(localdb)\MSSQLLocalDB;Initial Catalog=Etzler-Fakturace;Integrated Security=True;Connect Timeout=30;Encrypt=False;TrustServerCertificate=False;ApplicationIntent=ReadWrite;MultiSubnetFailover=False");
         }
         private void FrmZakaznik_Load(object sender,EventArgs e)
         {
@@ -37,5 +37,7 @@ namespace Fakturace
 
         }
 
+        
+        
     }
 }

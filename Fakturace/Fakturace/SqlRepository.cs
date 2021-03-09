@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace Fakturace
 {
-    class SqlRepository
+    public class SqlRepository
     {
         public string ConnectionString { get; set; }
 
@@ -31,15 +31,44 @@ namespace Fakturace
                             zakaznik.Add(new Zakaz(Convert.ToInt32(dataReader["IdZakaznik"]),
                                                    dataReader["TypZak"].ToString(),
                                                    dataReader["Adresa"].ToString(),
-                                                   dataReader["ICO"].ToString(),
+                                                   Convert.ToInt32(dataReader["ICO"]),
                                                    dataReader["Email"].ToString(),
-                                                   ))); 
+                                                   Convert.ToInt32(dataReader["Telefon"]),
+                                                   dataReader["Jmeno"].ToString(),
+                                                   dataReader["Prijmeni"].ToString())); 
                         }
                     }
                     sqlConnection.Close();
                 }
             }
             return zakaznik;
+        }
+        public List<Zbz> NactiZbozi()
+        {
+            List<Zbz> zbozi = new List<Zbz>();
+            using (SqlConnection sqlConnection = new SqlConnection(ConnectionString))
+            {
+                using (SqlCommand sqlCommand = new SqlCommand("select * from Zbozi", sqlConnection))
+                {
+                    sqlConnection.Open();
+                    using (SqlDataReader dataReader = sqlCommand.ExecuteReader())
+                    {
+                        while (dataReader.Read())
+                        {
+                            zbozi.Add(new Zbz(Convert.ToInt32(dataReader["IdZbozi"]),
+                                                   dataReader["Nazev"].ToString(),
+                                                   Convert.ToInt32(dataReader["CenaBezDPH"]),
+                                                   Convert.ToBoolean(dataReader["NaSklade"])));
+
+
+
+
+                        }
+                    }
+                    sqlConnection.Close();
+                }
+            }
+            return zbozi;
         }
     }
 }
