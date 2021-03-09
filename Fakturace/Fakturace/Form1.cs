@@ -16,5 +16,24 @@ namespace Fakturace
         {
             InitializeComponent();
         }
+
+        private void BtnZakaznik_Click(object sender, EventArgs e)
+        {
+            FrmZakaznik frmZakaznik = new FrmZakaznik();
+            frmZakaznik.ShowDialog();
+        }
+
+        private void BtnZbozi_Click(object sender, EventArgs e)
+        {
+            FrmZbozi frmZbozi = new FrmZbozi();
+            frmZbozi.ShowDialog();
+        }
+
+        private void BtnFakturace_Click(object sender, EventArgs e)
+        {
+            FrmFakturace frmFakturace = new FrmFakturace();
+            frmFakturace.ShowDialog();
+        }
     }
+    
 }
