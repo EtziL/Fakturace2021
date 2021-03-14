@@ -70,6 +70,12 @@
     <Compile Include="FrmZbozi.Designer.cs">
       <DependentUpon>FrmZbozi.cs</DependentUpon>
     </Compile>
+    <Compile Include="FrmZboziUpravy.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FrmZboziUpravy.Designer.cs">
+      <DependentUpon>FrmZboziUpravy.cs</DependentUpon>
+    </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="SqlRepository.cs" />
@@ -83,6 +89,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="FrmZbozi.resx">
       <DependentUpon>FrmZbozi.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FrmZboziUpravy.resx">
+      <DependentUpon>FrmZboziUpravy.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>

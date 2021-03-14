@@ -16,13 +16,15 @@ namespace Fakturace
             ConnectionString = connectionString;
         }
 
-        public List<Zakaz> NactiZakaznik()
+        public List<Zakaz> NactiZakaznik(string sloupecTrideni, bool sestupne, string hledani)
         {
             List<Zakaz> zakaznik = new List<Zakaz>();
             using (SqlConnection sqlConnection = new SqlConnection(ConnectionString))
             {
-                using (SqlCommand sqlCommand = new SqlCommand("select * from Zakaznik", sqlConnection))
+                using (SqlCommand sqlCommand = new SqlCommand(" ", sqlConnection))
                 {
+                    sqlCommand.CommandText = $"select * from Zakaznik where jmeno like @Hledani or prijmeni like @Hledani order by {sloupecTrideni}{(sestupne ? " desc" : "")}"; 
+                    sqlCommand.Parameters.AddWithValue("Hledani", "%" + hledani + "%");
                     sqlConnection.Open();
                     using (SqlDataReader dataReader = sqlCommand.ExecuteReader())
                     {
@@ -69,6 +71,43 @@ namespace Fakturace
                 }
             }
             return zbozi;
+        }
+        public void UlozZbozi(Zbz zbz)
+        {
+            if (zbz.Id == 0)
+            {
+                //není v databázi ->  budeme ho vytvářet
+                using (SqlConnection sqlconnection = new SqlConnection(ConnectionString))
+                {
+                    using (SqlCommand sqlCommand = new SqlCommand("", sqlconnection))
+                    {
+                        sqlCommand.CommandText = "insert into Zbozi (Nazev, CenaBezDPH, NaSklade) values(@Nazev, @CenaBezDPH, @NaSklade)";
+                        sqlCommand.Parameters.AddWithValue("Nazev", zbz.Nazev);
+                        sqlCommand.Parameters.AddWithValue("CenaBezDPH", zbz.CenaBezDPH);
+                        sqlCommand.Parameters.AddWithValue("NaSklade", zbz.NaSklade);
+                        sqlconnection.Open();
+                        sqlCommand.ExecuteNonQuery();
+                        sqlconnection.Close();
+                    }
+                }
+            }
+            else
+            {
+                //update
+                using (SqlConnection sqlconnection = new SqlConnection(ConnectionString))
+                {
+                    using (SqlCommand sqlCommand = new SqlCommand("", sqlconnection))
+                    {
+                        sqlCommand.CommandText = $"update Zbozi set Nazev=@Nazev, CenaBezDPH=@CenaBezDPH, NaSklade=@NaSklade where IdZbozi={zbz.Id}";
+                        sqlCommand.Parameters.AddWithValue("Nazev", zbz.Nazev);
+                        sqlCommand.Parameters.AddWithValue("CenaBezDPH", zbz.CenaBezDPH);
+                        sqlCommand.Parameters.AddWithValue("NaSklade", zbz.NaSklade);
+                        sqlconnection.Open();
+                        sqlCommand.ExecuteNonQuery();
+                        sqlconnection.Close();
+                    }
+                }
+            }
         }
     }
 }

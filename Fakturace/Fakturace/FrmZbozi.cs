@@ -35,5 +35,32 @@ namespace Fakturace
             }
 
         }
+
+        private void přidatToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            FrmZboziUpravy frmZboziUpravy = new FrmZboziUpravy(new Zbz("",0,true));
+            if (frmZboziUpravy.ShowDialog() == DialogResult.OK)
+            {
+                sqlRepository.UlozZbozi(frmZboziUpravy.Zbz);
+                //ctenari.Add(frmCtenariUpravy.Ctenar);
+                ZobrazData();
+            }
+        }
+
+        private void upravitToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            if (listView2.SelectedIndices.Count > 0)
+            {
+                FrmZboziUpravy frmZboziUpravy = new FrmZboziUpravy(zbozi[listView2.SelectedIndices[0]]);
+                if (frmZboziUpravy.ShowDialog() == DialogResult.OK)
+                {
+                    ZobrazData();
+                }
+            }
+            else
+            {
+                MessageBox.Show("Vyberte záznam");
+            }
+        }
     }
 }

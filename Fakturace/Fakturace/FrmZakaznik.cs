@@ -15,10 +15,12 @@ namespace Fakturace
         private List<Zakaz> zakaznik;
         private SqlRepository sqlRepository;
         private string[] sloupce = new string[] { "IdZakaznik, TypZak, Adresa, ICO, Email,Telefon,Jmeno,Prijmeni" };
+        private int sloupecTrideni = 0;
+        private bool sestupne;
         public FrmZakaznik()
         {
             InitializeComponent();
-            sqlRepository = new SqlRepository(@"Data Source=(localdb)\MSSQLLocalDB;Initial Catalog=Etzler-Fakturace;Integrated Security=True;Connect Timeout=30;Encrypt=False;TrustServerCertificate=False;ApplicationIntent=ReadWrite;MultiSubnetFailover=False");
+            sqlRepository = new SqlRepository("Data Source=(localdb)\\MSSQLLocalDB;Initial Catalog=Etzler-Fakturace;Integrated Security=True;Connect Timeout=30;Encrypt=False;TrustServerCertificate=False;ApplicationIntent=ReadWrite;MultiSubnetFailover=False");
         }
         private void FrmZakaznik_Load(object sender,EventArgs e)
         {
@@ -28,7 +30,7 @@ namespace Fakturace
         private void ZobrazData()
         {
 
-            zakaznik = sqlRepository.NactiZakaznik();
+            zakaznik = sqlRepository.NactiZakaznik(sloupce[sloupecTrideni], sestupne, TSTxtHledat.Text);
             listView1.Items.Clear();
             foreach (var zakaz in zakaznik)
             {
